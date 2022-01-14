@@ -291,8 +291,9 @@ void read_bb2attribute(char *bname)
 
     if(!content)
         FATAL("Error in read_bb2attribute");
-    
-    parse_content(content, 0);
+
+    if (content[strlen(content)-1] == '}')
+        parse_content(content, 0);
 
     ck_free(fname);
     ck_free(content);
@@ -316,7 +317,8 @@ void read_bb2attribute_not_first(u8 *bname,u8 *fuzz_out)
     if(!content)
         FATAL("Error in read_bb2attribute");
     
-    parse_content(content, 1);
+    if (content[strlen(content)-1] == '}')
+        parse_content(content, 1);
 
     ck_free(fname);
     ck_free(content);
@@ -342,7 +344,9 @@ void read_loc2bbs(char *bname)
     if(!content)
         FATAL("Error in read_bb2attribute");
     
-    parse_content(content, 2);
+    if (content[strlen(content)-1] == '}')
+        parse_content(content, 2);
+        
     ck_free(content);
     ck_free(fname);
 }
